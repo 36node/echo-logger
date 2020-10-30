@@ -23,7 +23,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/LogDoc"
+              $ref: "#/components/schemas/Log"
       responses:
         "201":
           description: The Log created
@@ -77,7 +77,7 @@ components:
             $ref: "#/components/schemas/Err"
 
   schemas:
-    LogDoc:
+    Log:
       type: object
       properties:
         title:
@@ -89,29 +89,10 @@ components:
         createBy:
           type: string
           description: 创建者
-
-    Log:
-      allOf:
-        - $ref: "#/components/schemas/LogDoc"
-        - $ref: "#/components/schemas/MongoDefault"
-
-    MongoDefault:
-      type: object
-      required:
-        - id
-      properties:
-        id:
-          type: string
-        updateAt:
-          type: string
-          format: date-time
-        updateBy:
-          type: string
         createAt:
           type: string
           format: date-time
-        createBy:
-          type: string
+          description: 创建时间
 
     Err:
       type: object

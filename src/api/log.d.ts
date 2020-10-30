@@ -16,6 +16,10 @@ declare namespace API {
        * 创建者
        */
       createBy?: string;
+      /**
+       * 创建时间
+       */
+      createAt?: Date;
     };
   }
   export interface CreateLogResponse {
@@ -32,12 +36,10 @@ declare namespace API {
        * 创建者
        */
       createBy?: string;
-    } & {
-      id: string;
-      updateAt?: Date;
-      updateBy?: string;
+      /**
+       * 创建时间
+       */
       createAt?: Date;
-      createBy?: string;
     };
   }
   type Context<StateT, CustomT = {}> = RouterContext<StateT, CustomT>;

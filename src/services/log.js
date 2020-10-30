@@ -1,8 +1,7 @@
 import Debug from "debug";
 
 import API from "../api/log";
-import { Log } from "../models";
-import { plain } from "../lib";
+import { plain, logger } from "../lib";
 
 const debug = Debug("store:service:log");
 
@@ -30,10 +29,9 @@ export class Service extends API {
    */
   async createLog(req, ctx) {
     debug("create log with body %o", req.body);
-    const log = await Log.create(req.body);
-
+    logger.info(req.body);
     return {
-      content: plain(log),
+      content: plain(req.body),
     };
   }
 }
