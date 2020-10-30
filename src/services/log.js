@@ -1,5 +1,4 @@
 import Debug from "debug";
-import { toMongooseQuery } from "@36node/query-normalizr";
 
 import API from "../api/log";
 import { Log } from "../models";
