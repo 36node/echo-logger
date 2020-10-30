@@ -16,13 +16,7 @@ import openapi from "@36node/koa-openapi";
 
 import logger from "./lib/log";
 import { BASE, NODE_ENV } from "./config";
-import {
-  parkService,
-  draftService,
-  vehicleService,
-  recordService,
-  repairService,
-} from "./services";
+import { logService } from "./services";
 import pkg from "../package.json";
 import { errHandler } from "./middlewares";
 
@@ -33,11 +27,7 @@ const publicKey = fs.readFileSync(path.join(__dirname, "../ssl/rsa_jwt.pub"));
 /**
  * register services
  */
-parkService.bind(router);
-draftService.bind(router);
-vehicleService.bind(router);
-recordService.bind(router);
-repairService.bind(router);
+logService.bind(router);
 
 /**
  * logger

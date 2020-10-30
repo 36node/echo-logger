@@ -4,17 +4,6 @@ import { app, config } from "../src";
 
 const { PORT, MONGODB_CONNECTION } = config;
 
-/**
- * mock bus_op_api request
- */
-import busOpSdk from "../src/lib/busOpSdk";
-busOpSdk.alert.listAlerts = () => ({
-  body: [],
-  headers: {
-    "x-total-count": 0,
-  },
-});
-
 export default async () => {
   /**
    * setup mongo

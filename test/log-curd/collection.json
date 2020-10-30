@@ -1,0 +1,70 @@
+{
+  "info": {
+    "_postman_id": "29fe11ab-e08a-46e0-82e8-f4b34115aecc",
+    "name": "echo-logger CRUD",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "create a log",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "8046bdcb-154b-4659-9092-9d16ca988d01",
+            "exec": [
+              "var Ajv = require('ajv');",
+              "var ajv = new Ajv({ logger: console, coerceTypes: true, unknownFormats: [\"int32\"] });",
+              "",
+              "pm.test(\"Status code is 201\", function () {",
+              "  pm.response.to.have.status(201);",
+              "});",
+              "",
+              "const schema = {\"type\":\"object\",\"required\":[],\"properties\":{\"content\":{\"allOf\":[{\"type\":\"object\",\"properties\":{\"title\":{\"type\":\"string\",\"description\":\"日志标题\"},\"desc\":{\"type\":\"string\",\"description\":\"日志详情\"},\"createBy\":{\"type\":\"string\",\"description\":\"创建者\"}}},{\"type\":\"object\",\"required\":[\"id\"],\"properties\":{\"id\":{\"type\":\"string\"},\"updateAt\":{\"tsType\":\"Date\",\"type\":\"string\",\"format\":\"date-time\"},\"updateBy\":{\"type\":\"string\"},\"createAt\":{\"tsType\":\"Date\",\"type\":\"string\",\"format\":\"date-time\"},\"createBy\":{\"type\":\"string\"}}}]}}};",
+              "",
+              "const res = {",
+              "  content: pm.response.json(),",
+              "  headers: pm.response.headers.reduce((c, k) => ({...c, [k.key]: k.value }), {})",
+              "}",
+              "pm.test(\"Json body schema test\", function(){",
+              "  pm.expect(ajv.validate(schema, res)).to.be.true;",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"标题\",\n    \"desc\": \"内容\",\n    \"createBy\": \"11111111111\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/logs",
+          "host": ["{{baseUrl}}"],
+          "path": ["logs"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "protocolProfileBehavior": {}
+}

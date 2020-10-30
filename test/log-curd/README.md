@@ -8,15 +8,8 @@
 
 ## 数据清单:
 
-- USER: 公共用户
+- USER: 用户
 
-```
-// id
-5cb9a4edc48ad400120d28b0
-// token
-eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWNiOWE0ZWRjNDhhZDQwMDEyMGQyOGIwIiwiZXhwIjoyNTU3MDM1MjU4LCJucyI6Ii9hZHZlbnR1cmVyIn0.gKb4bRq2RN_gFO03nYDYgjeqTsNdTvmjcnjLbvSfmXVRbX2B0jxl0gaPN31EKfOg1GKkRUxY-y9oqYITajOAcfqfUFGj4p-42iXL8IFiKO8aLmmQl7AuTo_Z0wfL630w8ZSeunfJ4VhbucaCzghzBHPqdD73QdibqNOyK0S8s8E
-
- ADMIN: 管理员用户
 //id
 5f8558287f1cb500116720f9
 //token
@@ -26,9 +19,4 @@ eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWY4NTU4Mjg3ZjFjYjUwMDExNjcyMGY
 
 ## 业务流程
 
-- 创建 REPAIR_A
-- 获取 Repairs 列表
-- 查看 REPAIR_A
-- 修改 REPAIR_A
-- 修改 REPAIR_A 维修记录
-- 删除 REPAIR_A
+- USER: 创建 LOG
