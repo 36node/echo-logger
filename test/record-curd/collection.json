@@ -1,0 +1,931 @@
+{
+	"info": {
+		"_postman_id": "f0777ac6-86e7-4db7-993e-af79bf3c525d",
+		"name": "Record Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "USER: 无法创建Record",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "94dbd4e0-c20a-49be-8fda-dcac4cb2a4e4",
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {",
+							"  pm.response.to.have.status(403);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ticket\": \"ticket\",\r\n    \"title\": \"title\",\r\n    \"desc\": \"desc\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/records",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"records"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_201",
+					"originalRequest": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/parks",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parks"
+							]
+						}
+					},
+					"status": "The Park created",
+					"code": 201,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "ADMIN: 创建Record RECORD_A",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f0c6b3a-fb47-4ed1-b037-9d853a6cde8f",
+						"exec": [
+							"var Ajv = require('ajv');",
+							"var ajv = new Ajv({ logger: console, coerceTypes: true, unknownFormats: [\"int32\"] });",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"  pm.response.to.have.status(201);",
+							"});",
+							"",
+							"const schema = {\"type\":\"object\",\"required\":[],\"properties\":{\"content\":{\"allOf\":[{\"type\":\"object\",\"properties\":{\"ticket\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"desc\":{\"type\":\"string\"}}},{\"type\":\"object\",\"required\":[\"id\"],\"properties\":{\"id\":{\"type\":\"string\"},\"updateAt\":{\"type\":\"string\",\"format\":\"date-time\"},\"updateBy\":{\"type\":\"string\"},\"createAt\":{\"type\":\"string\",\"format\":\"date-time\"},\"createBy\":{\"type\":\"string\"}}}]}}};",
+							"const res = {",
+							"  content: pm.response.json(),",
+							"  headers: pm.response.headers.reduce((c, k) => ({...c, [k.key]: k.value }), {})",
+							"}",
+							"pm.test(\"Json body schema test\", function(){",
+							"  pm.expect(ajv.validate(schema, res)).to.be.true;",
+							"})",
+							"",
+							"",
+							"// 为后续测试准备数据",
+							"pm.environment.set(\"RECORD_A\", res.content.id);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{admin_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ticket\": \"ticket\",\r\n    \"title\": \"title\",\r\n    \"desc\": \"desc\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/records",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"records"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_201",
+					"originalRequest": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/parks",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parks"
+							]
+						}
+					},
+					"status": "The Park created",
+					"code": 201,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "USER: 获取 Records 列表",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "823b4156-67a6-44ee-9492-5675355b0909",
+						"exec": [
+							"var Ajv = require('ajv');",
+							"var ajv = new Ajv({ logger: console, coerceTypes: true, unknownFormats: [\"int32\"] });",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const schema = {\"type\":\"object\",\"required\":[],\"properties\":{\"content\":{\"type\":\"array\",\"items\":{\"allOf\":[{\"type\":\"object\",\"properties\":{\"ticket\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"desc\":{\"type\":\"string\"}}},{\"type\":\"object\",\"required\":[\"id\"],\"properties\":{\"id\":{\"type\":\"string\"},\"updateAt\":{\"type\":\"string\",\"format\":\"date-time\"},\"updateBy\":{\"type\":\"string\"},\"createAt\":{\"type\":\"string\",\"format\":\"date-time\"},\"createBy\":{\"type\":\"string\"}}}]}},\"headers\":{\"type\":\"object\",\"required\":[\"X-Total-Count\"],\"properties\":{\"X-Total-Count\":{\"type\":\"integer\"}}}}};",
+							"const res = {",
+							"  content: pm.response.json(),",
+							"  headers: pm.response.headers.reduce((c, k) => ({...c, [k.key]: k.value }), {})",
+							"}",
+							"pm.test(\"Json body schema test\", function(){",
+							"  pm.expect(ajv.validate(schema, res)).to.be.true;",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/records?ticket_like=ticket",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"records"
+					],
+					"query": [
+						{
+							"key": "ticket_like",
+							"value": "ticket"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_200",
+					"originalRequest": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/parks?_limit=&_offset=&_sort=&_select=&name_like=",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parks"
+							],
+							"query": [
+								{
+									"key": "_limit",
+									"value": ""
+								},
+								{
+									"key": "_offset",
+									"value": ""
+								},
+								{
+									"key": "_sort",
+									"value": ""
+								},
+								{
+									"key": "_select",
+									"value": ""
+								},
+								{
+									"key": "name_like",
+									"value": ""
+								}
+							]
+						}
+					},
+					"status": "A paged array of parks",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-Total-Count",
+							"value": "unset"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "USER: 获取 RECORD_A",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c774dcd1-a771-46fb-89d7-2ec1ef9b14b9",
+						"exec": [
+							"var Ajv = require('ajv');",
+							"var ajv = new Ajv({ logger: console, coerceTypes: true, unknownFormats: [\"int32\"] });",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const schema = {\"type\":\"object\",\"required\":[],\"properties\":{\"content\":{\"allOf\":[{\"type\":\"object\",\"properties\":{\"ticket\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"desc\":{\"type\":\"string\"}}},{\"type\":\"object\",\"required\":[\"id\"],\"properties\":{\"id\":{\"type\":\"string\"},\"updateAt\":{\"type\":\"string\",\"format\":\"date-time\"},\"updateBy\":{\"type\":\"string\"},\"createAt\":{\"type\":\"string\",\"format\":\"date-time\"},\"createBy\":{\"type\":\"string\"}}}]}}};",
+							"const res = {",
+							"  content: pm.response.json(),",
+							"  headers: pm.response.headers.reduce((c, k) => ({...c, [k.key]: k.value }), {})",
+							"}",
+							"pm.test(\"Json body schema test\", function(){",
+							"  pm.expect(ajv.validate(schema, res)).to.be.true;",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/records/:recordId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"records",
+						":recordId"
+					],
+					"variable": [
+						{
+							"key": "recordId",
+							"value": "{{RECORD_A}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_200",
+					"originalRequest": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/parks/:parkId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parks",
+								":parkId"
+							],
+							"variable": [
+								{
+									"key": "parkId",
+									"value": "{{parkId}}"
+								}
+							]
+						}
+					},
+					"status": "Expected response to a valid request",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "USER: 无法修改RECORD_A",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b149aece-1b6e-4a29-9748-7fa0ff509e47",
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {",
+							"  pm.response.to.have.status(403);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ticket\": \"id\",\n    \"title\": \"title_update\",\n    \"desc\": \"desc_update\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/records/:recordId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"records",
+						":recordId"
+					],
+					"variable": [
+						{
+							"key": "recordId",
+							"value": "{{RECORD_A}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_200",
+					"originalRequest": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"{{name}}\",\n  \"address\": \"{{address}}\",\n  \"appearance\": \"{{appearance}}\",\n  \"software\": \"{{software}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/parks/:parkId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parks",
+								":parkId"
+							],
+							"variable": [
+								{
+									"key": "parkId",
+									"value": "{{parkId}}"
+								}
+							]
+						}
+					},
+					"status": "The park",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "ADMIN: 修改RECORD_A",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b84b70b2-caa4-4936-870a-517a104b0f07",
+						"exec": [
+							"var Ajv = require('ajv');",
+							"var ajv = new Ajv({ logger: console, coerceTypes: true, unknownFormats: [\"int32\"] });",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const schema = {\"type\":\"object\",\"required\":[],\"properties\":{\"content\":{\"allOf\":[{\"type\":\"object\",\"properties\":{\"ticket\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"desc\":{\"type\":\"string\"}}},{\"type\":\"object\",\"required\":[\"id\"],\"properties\":{\"id\":{\"type\":\"string\"},\"updateAt\":{\"type\":\"string\",\"format\":\"date-time\"},\"updateBy\":{\"type\":\"string\"},\"createAt\":{\"type\":\"string\",\"format\":\"date-time\"},\"createBy\":{\"type\":\"string\"}}}]}}};",
+							"const res = {",
+							"  content: pm.response.json(),",
+							"  headers: pm.response.headers.reduce((c, k) => ({...c, [k.key]: k.value }), {})",
+							"}",
+							"pm.test(\"Json body schema test\", function(){",
+							"  pm.expect(ajv.validate(schema, res)).to.be.true;",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{admin_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ticket\": \"id\",\n    \"title\": \"title_update\",\n    \"desc\": \"desc_update\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/records/:recordId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"records",
+						":recordId"
+					],
+					"variable": [
+						{
+							"key": "recordId",
+							"value": "{{RECORD_A}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_200",
+					"originalRequest": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"{{name}}\",\n  \"address\": \"{{address}}\",\n  \"appearance\": \"{{appearance}}\",\n  \"software\": \"{{software}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/parks/:parkId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parks",
+								":parkId"
+							],
+							"variable": [
+								{
+									"key": "parkId",
+									"value": "{{parkId}}"
+								}
+							]
+						}
+					},
+					"status": "The park",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "USER: 无法删除RECORD_A",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ccf66cef-ffd6-4acf-b6c3-f25c08d70325",
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {",
+							"  pm.response.to.have.status(403);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/records/:recordId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"records",
+						":recordId"
+					],
+					"variable": [
+						{
+							"key": "recordId",
+							"value": "{{RECORD_A}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_204",
+					"originalRequest": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/parks/:parkId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parks",
+								":parkId"
+							],
+							"variable": [
+								{
+									"key": "parkId",
+									"value": "{{parkId}}"
+								}
+							]
+						}
+					},
+					"status": "park deleted",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "ADMIN: 删除RECORD_A",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fffb765e-a252-4017-80ba-7f033db89ab3",
+						"exec": [
+							"var Ajv = require('ajv');",
+							"var ajv = new Ajv({ logger: console, coerceTypes: true, unknownFormats: [\"int32\"] });",
+							"",
+							"pm.test(\"Status code is 204\", function () {",
+							"  pm.response.to.have.status(204);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{admin_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/records/:recordId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"records",
+						":recordId"
+					],
+					"variable": [
+						{
+							"key": "recordId",
+							"value": "{{RECORD_A}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_204",
+					"originalRequest": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/parks/:parkId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parks",
+								":parkId"
+							],
+							"variable": [
+								{
+									"key": "parkId",
+									"value": "{{parkId}}"
+								}
+							]
+						}
+					},
+					"status": "park deleted",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}

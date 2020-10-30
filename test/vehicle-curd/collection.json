@@ -1,0 +1,983 @@
+{
+	"info": {
+		"_postman_id": "54e85ab9-0631-466d-9f6b-2d1b9f6a4b29",
+		"name": "Vehicle Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "vehicle",
+			"item": [
+				{
+					"name": "USER: 创建 VEHICLE_A",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b6ba990b-35a9-4b0d-a945-10704d6988ff",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"  pm.response.to.have.status(201);",
+									"});",
+									"",
+									"const res = {",
+									"  content: pm.response.json(),",
+									"  headers: pm.response.headers.reduce((c, k) => ({...c, [k.key]: k.value }), {})",
+									"}",
+									"",
+									"// 为后续测试准备数据",
+									"pm.environment.set(\"VEHICLE_A\", res.content.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ticket\": \"5f92f8bea92f2434b05c0f8e\",\n    \"status\": \"PENDING\",\n    \"rejected\": false,\n    \"scrapped\": false,\n    \"terminal\": \"巴士一公司\",\n    \"park\": \"5f918c836d1b2c7bb8e7377c\",\n    \"purchaseAt\": \"2020-09-29T15:18:37.939Z\",\n    \"plateAt\": \"2020-10-21T15:18:41.576Z\",\n    \"operateAt\": \"2020-10-06T15:18:42.764Z\",\n    \"year\": 2020,\n    \"license\": [\n      {\n        \"name\": \"test.jpg\",\n        \"uid\": \"rc-upload-1603466305367-13\",\n        \"size\": 90520,\n        \"status\": \"done\",\n        \"url\": \"http://youyuan-erp.oss-cn-beijing.aliyuncs.com/test-1603466339\",\n        \"ossName\": \"test-1603466339\",\n        \"remark\": \"\"\n      }\n    ],\n    \"brands\": \"申龙\",\n    \"plate\": \"沪AC302D\",\n    \"vin\": \"1dd1343\",\n    \"jobNum\": \"343434\",\n    \"num\": \"dfdfdfd\",\n    \"catl\": \"34343\",\n    \"batteryPN\": \"4343\",\n    \"batteryNum\": \"fdfd\",\n    \"batteryPropRight\": \"4343\",\n    \"power\": 11334,\n    \"bmuHardware\": \"34343\",\n    \"bmuSoftware\": \"343\",\n    \"cscHardware\": \"4343\",\n    \"cscSoftware\": \"1.0\",\n    \"rdb\": \"dfdfd\",\n    \"remark\": \"dfdd\",\n    \"softwarePic\": [\n      {\n        \"name\": \"test.jpg\",\n        \"uid\": \"rc-upload-1603466305367-15\",\n        \"size\": 90520,\n        \"status\": \"done\",\n        \"url\": \"http://youyuan-erp.oss-cn-beijing.aliyuncs.com/test-1603466344\",\n        \"ossName\": \"test-1603466344\",\n        \"remark\": \"上位机01\"\n      }\n    ],\n    \"frontPic\": [\n      {\n        \"name\": \"test.jpg\",\n        \"uid\": \"rc-upload-1603466305367-17\",\n        \"size\": 90520,\n        \"status\": \"done\",\n        \"url\": \"http://youyuan-erp.oss-cn-beijing.aliyuncs.com/test-1603466346\",\n        \"ossName\": \"test-1603466346\",\n        \"remark\": \"车头01\"\n      }\n    ],\n    \"nameplatePic\": [\n      {\n        \"name\": \"test.jpg\",\n        \"uid\": \"rc-upload-1603466305367-19\",\n        \"size\": 90520,\n        \"status\": \"done\",\n        \"url\": \"http://youyuan-erp.oss-cn-beijing.aliyuncs.com/test-1603466349\",\n        \"ossName\": \"test-1603466349\",\n        \"remark\": \"铭牌01\"\n      }\n    ],\n    \"meterPic\": [\n      {\n        \"name\": \"test.jpg\",\n        \"uid\": \"rc-upload-1603466305367-21\",\n        \"size\": 90520,\n        \"status\": \"done\",\n        \"url\": \"http://youyuan-erp.oss-cn-beijing.aliyuncs.com/test-1603466351\",\n        \"ossName\": \"test-1603466351\",\n        \"remark\": \"仪表01\"\n      }\n    ],\n    \"batteryPic\": [\n      {\n        \"name\": \"test.jpg\",\n        \"uid\": \"rc-upload-1603466305367-23\",\n        \"size\": 90520,\n        \"status\": \"done\",\n        \"url\": \"http://youyuan-erp.oss-cn-beijing.aliyuncs.com/test-1603466353\",\n        \"ossName\": \"test-1603466353\",\n        \"remark\": \"电池号01\"\n      }\n    ],\n    \"otherPic\": [],\n    \"createBy\": \"5f8cfee1b7aa21001123bbd2\"\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vehicles",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vehicles"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response_201",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"terminal\": \"{{terminal}}\",\n  \"park\": \"{{park}}\",\n  \"purchaseAt\": \"{{purchaseAt}}\",\n  \"plateAt\": \"{{plateAt}}\",\n  \"operateAt\": \"{{operateAt}}\",\n  \"retireAt\": \"{{retireAt}}\",\n  \"license\": \"{{license}}\",\n  \"brands\": \"{{brands}}\",\n  \"plate\": \"{{plate}}\",\n  \"vin\": \"{{vin}}\",\n  \"jobNum\": \"{{jobNum}}\",\n  \"num\": \"{{num}}\",\n  \"catl\": \"{{catl}}\",\n  \"batteryPN\": \"{{batteryPN}}\",\n  \"batteryNum\": \"{{batteryNum}}\",\n  \"batteryPropRight\": \"{{batteryPropRight}}\",\n  \"power\": \"{{power}}\",\n  \"bmuHardware\": \"{{bmuHardware}}\",\n  \"bmuSoftware\": \"{{bmuSoftware}}\",\n  \"cscHardware\": \"{{cscHardware}}\",\n  \"cscSoftware\": \"{{cscSoftware}}\",\n  \"rdb\": \"{{rdb}}\",\n  \"remark\": \"{{remark}}\",\n  \"softwarePic\": \"{{softwarePic}}\",\n  \"frontPic\": \"{{frontPic}}\",\n  \"nameplatePic\": \"{{nameplatePic}}\",\n  \"meterPic\": \"{{meterPic}}\",\n  \"batteryPic\": \"{{batteryPic}}\",\n  \"otherPic\": \"{{otherPic}}\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/vehicles",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"vehicles"
+									]
+								}
+							},
+							"status": "The Vehicle created",
+							"code": 201,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "USER: 查看 vehicles 列表",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f94ae571-24cc-4921-83c5-7e3020af79bc",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/vehicles",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vehicles"
+							],
+							"query": [
+								{
+									"key": "_limit",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "_offset",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "_sort",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "_select",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "running",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response_200",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/vehicles?_limit=&_offset=&_sort=&_select=&running=&status=",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"vehicles"
+									],
+									"query": [
+										{
+											"key": "_limit",
+											"value": ""
+										},
+										{
+											"key": "_offset",
+											"value": ""
+										},
+										{
+											"key": "_sort",
+											"value": ""
+										},
+										{
+											"key": "_select",
+											"value": ""
+										},
+										{
+											"key": "running",
+											"value": ""
+										},
+										{
+											"key": "status",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "A paged array of vehicles",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-Total-Count",
+									"value": "unset"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "USER: 查看 VEHICLE_A",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5e247f40-dde3-4634-ae0b-3df63e4e7884",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/vehicles/:vehicleId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vehicles",
+								":vehicleId"
+							],
+							"variable": [
+								{
+									"key": "vehicleId",
+									"value": "{{VEHICLE_A}}",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response_200",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/vehicles/:vehicleId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"vehicles",
+										":vehicleId"
+									],
+									"variable": [
+										{
+											"key": "vehicleId",
+											"value": "{{vehicleId}}"
+										}
+									]
+								}
+							},
+							"status": "Expected response to a valid request",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "USER: 无法修改 VEHICLE_A",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c744a186-1c52-44d9-86b7-8643ed12de01",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"  pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ticket\": \"5f92f8bea92f2434b05c0f8e\",\n    \"status\": \"PENDING\",\n    \"rejected\": false,\n    \"scrapped\": false,\n    \"terminal\": \"巴士一公司\",\n    \"park\": \"5f918c836d1b2c7bb8e7377c\",\n    \"purchaseAt\": \"2020-09-29T15:18:37.939Z\",\n    \"plateAt\": \"2020-10-21T15:18:41.576Z\",\n    \"operateAt\": \"2020-10-06T15:18:42.764Z\",\n    \"year\": 2020,\n    \"license\": [\n      {\n        \"name\": \"test.jpg\",\n        \"uid\": \"rc-upload-1603466305367-13\",\n        \"size\": 90520,\n        \"status\": \"done\",\n        \"url\": \"http://youyuan-erp.oss-cn-beijing.aliyuncs.com/test-1603466339\",\n        \"ossName\": \"test-1603466339\",\n        \"remark\": \"\"\n      }\n    ],\n    \"brands\": \"申龙\",\n    \"plate\": \"沪AC302D\",\n    \"vin\": \"1dd1343\",\n    \"jobNum\": \"343434\",\n    \"num\": \"dfdfdfd\",\n    \"catl\": \"34343\",\n    \"batteryPN\": \"4343\",\n    \"batteryNum\": \"fdfd\",\n    \"batteryPropRight\": \"4343\",\n    \"power\": 11334,\n    \"bmuHardware\": \"34343\",\n    \"bmuSoftware\": \"343\",\n    \"cscHardware\": \"4343\",\n    \"cscSoftware\": \"1.0\",\n    \"rdb\": \"dfdfd\",\n    \"remark\": \"dfdd\",\n    \"softwarePic\": [\n      {\n        \"name\": \"test.jpg\",\n        \"uid\": \"rc-upload-1603466305367-15\",\n        \"size\": 90520,\n        \"status\": \"done\",\n        \"url\": \"http://youyuan-erp.oss-cn-beijing.aliyuncs.com/test-1603466344\",\n        \"ossName\": \"test-1603466344\",\n        \"remark\": \"上位机01\"\n      }\n    ],\n    \"frontPic\": [\n      {\n        \"name\": \"test.jpg\",\n        \"uid\": \"rc-upload-1603466305367-17\",\n        \"size\": 90520,\n        \"status\": \"done\",\n        \"url\": \"http://youyuan-erp.oss-cn-beijing.aliyuncs.com/test-1603466346\",\n        \"ossName\": \"test-1603466346\",\n        \"remark\": \"车头01\"\n      }\n    ],\n    \"nameplatePic\": [\n      {\n        \"name\": \"test.jpg\",\n        \"uid\": \"rc-upload-1603466305367-19\",\n        \"size\": 90520,\n        \"status\": \"done\",\n        \"url\": \"http://youyuan-erp.oss-cn-beijing.aliyuncs.com/test-1603466349\",\n        \"ossName\": \"test-1603466349\",\n        \"remark\": \"铭牌01\"\n      }\n    ],\n    \"meterPic\": [\n      {\n        \"name\": \"test.jpg\",\n        \"uid\": \"rc-upload-1603466305367-21\",\n        \"size\": 90520,\n        \"status\": \"done\",\n        \"url\": \"http://youyuan-erp.oss-cn-beijing.aliyuncs.com/test-1603466351\",\n        \"ossName\": \"test-1603466351\",\n        \"remark\": \"仪表01\"\n      }\n    ],\n    \"batteryPic\": [\n      {\n        \"name\": \"test.jpg\",\n        \"uid\": \"rc-upload-1603466305367-23\",\n        \"size\": 90520,\n        \"status\": \"done\",\n        \"url\": \"http://youyuan-erp.oss-cn-beijing.aliyuncs.com/test-1603466353\",\n        \"ossName\": \"test-1603466353\",\n        \"remark\": \"电池号01\"\n      }\n    ],\n    \"otherPic\": [],\n    \"createBy\": \"5f8cfee1b7aa21001123bbd2\"\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vehicles/:vehicleId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vehicles",
+								":vehicleId"
+							],
+							"variable": [
+								{
+									"key": "vehicleId",
+									"value": "{{VEHICLE_A}}",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response_200",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ticket\": \"{{ticket}}\",\n  \"status\": \"{{status}}\",\n  \"rejected\": \"{{rejected}}\",\n  \"scrapped\": \"{{scrapped}}\",\n  \"crm\": \"{{crm}}\",\n  \"terminal\": \"{{terminal}}\",\n  \"park\": \"{{park}}\",\n  \"purchaseAt\": \"{{purchaseAt}}\",\n  \"plateAt\": \"{{plateAt}}\",\n  \"operateAt\": \"{{operateAt}}\",\n  \"retireAt\": \"{{retireAt}}\",\n  \"license\": \"{{license}}\",\n  \"brands\": \"{{brands}}\",\n  \"plate\": \"{{plate}}\",\n  \"vin\": \"{{vin}}\",\n  \"jobNum\": \"{{jobNum}}\",\n  \"num\": \"{{num}}\",\n  \"catl\": \"{{catl}}\",\n  \"batteryPN\": \"{{batteryPN}}\",\n  \"batteryNum\": \"{{batteryNum}}\",\n  \"batteryPropRight\": \"{{batteryPropRight}}\",\n  \"power\": \"{{power}}\",\n  \"bmuHardware\": \"{{bmuHardware}}\",\n  \"bmuSoftware\": \"{{bmuSoftware}}\",\n  \"cscHardware\": \"{{cscHardware}}\",\n  \"cscSoftware\": \"{{cscSoftware}}\",\n  \"rdb\": \"{{rdb}}\",\n  \"remark\": \"{{remark}}\",\n  \"softwarePic\": \"{{softwarePic}}\",\n  \"frontPic\": \"{{frontPic}}\",\n  \"nameplatePic\": \"{{nameplatePic}}\",\n  \"meterPic\": \"{{meterPic}}\",\n  \"batteryPic\": \"{{batteryPic}}\",\n  \"otherPic\": \"{{otherPic}}\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/vehicles/:vehicleId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"vehicles",
+										":vehicleId"
+									],
+									"variable": [
+										{
+											"key": "vehicleId",
+											"value": "{{vehicleId}}"
+										}
+									]
+								}
+							},
+							"status": "The vehicle",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "ADMIN: 可以修改 VEHICLE_A",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d611f38a-284f-4c89-9502-ccbe64109d42",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ticket\": \"5f92f8bea92f2434b05c0f8e\",\n    \"status\": \"PENDING\",\n    \"rejected\": false,\n    \"scrapped\": false,\n    \"terminal\": \"巴士一公司\",\n    \"park\": \"5f918c836d1b2c7bb8e7377c\",\n    \"purchaseAt\": \"2020-09-29T15:18:37.939Z\",\n    \"plateAt\": \"2020-10-21T15:18:41.576Z\",\n    \"operateAt\": \"2020-10-06T15:18:42.764Z\",\n    \"year\": 2020,\n    \"license\": [\n      {\n        \"name\": \"test.jpg\",\n        \"uid\": \"rc-upload-1603466305367-13\",\n        \"size\": 90520,\n        \"status\": \"done\",\n        \"url\": \"http://youyuan-erp.oss-cn-beijing.aliyuncs.com/test-1603466339\",\n        \"ossName\": \"test-1603466339\",\n        \"remark\": \"\"\n      }\n    ],\n    \"brands\": \"申龙\",\n    \"plate\": \"沪AC302D\",\n    \"vin\": \"1dd1343\",\n    \"jobNum\": \"343434\",\n    \"num\": \"dfdfdfd\",\n    \"catl\": \"34343\",\n    \"batteryPN\": \"4343\",\n    \"batteryNum\": \"fdfd\",\n    \"batteryPropRight\": \"4343\",\n    \"power\": 11334,\n    \"bmuHardware\": \"34343\",\n    \"bmuSoftware\": \"343\",\n    \"cscHardware\": \"4343\",\n    \"cscSoftware\": \"1.0\",\n    \"rdb\": \"dfdfd\",\n    \"remark\": \"dfdd\",\n    \"softwarePic\": [\n      {\n        \"name\": \"test.jpg\",\n        \"uid\": \"rc-upload-1603466305367-15\",\n        \"size\": 90520,\n        \"status\": \"done\",\n        \"url\": \"http://youyuan-erp.oss-cn-beijing.aliyuncs.com/test-1603466344\",\n        \"ossName\": \"test-1603466344\",\n        \"remark\": \"上位机01\"\n      }\n    ],\n    \"frontPic\": [\n      {\n        \"name\": \"test.jpg\",\n        \"uid\": \"rc-upload-1603466305367-17\",\n        \"size\": 90520,\n        \"status\": \"done\",\n        \"url\": \"http://youyuan-erp.oss-cn-beijing.aliyuncs.com/test-1603466346\",\n        \"ossName\": \"test-1603466346\",\n        \"remark\": \"车头01\"\n      }\n    ],\n    \"nameplatePic\": [\n      {\n        \"name\": \"test.jpg\",\n        \"uid\": \"rc-upload-1603466305367-19\",\n        \"size\": 90520,\n        \"status\": \"done\",\n        \"url\": \"http://youyuan-erp.oss-cn-beijing.aliyuncs.com/test-1603466349\",\n        \"ossName\": \"test-1603466349\",\n        \"remark\": \"铭牌01\"\n      }\n    ],\n    \"meterPic\": [\n      {\n        \"name\": \"test.jpg\",\n        \"uid\": \"rc-upload-1603466305367-21\",\n        \"size\": 90520,\n        \"status\": \"done\",\n        \"url\": \"http://youyuan-erp.oss-cn-beijing.aliyuncs.com/test-1603466351\",\n        \"ossName\": \"test-1603466351\",\n        \"remark\": \"仪表01\"\n      }\n    ],\n    \"batteryPic\": [\n      {\n        \"name\": \"test.jpg\",\n        \"uid\": \"rc-upload-1603466305367-23\",\n        \"size\": 90520,\n        \"status\": \"done\",\n        \"url\": \"http://youyuan-erp.oss-cn-beijing.aliyuncs.com/test-1603466353\",\n        \"ossName\": \"test-1603466353\",\n        \"remark\": \"电池号01\"\n      }\n    ],\n    \"otherPic\": [],\n    \"createBy\": \"5f8cfee1b7aa21001123bbd2\"\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vehicles/:vehicleId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vehicles",
+								":vehicleId"
+							],
+							"variable": [
+								{
+									"key": "vehicleId",
+									"value": "{{VEHICLE_A}}",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response_200",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ticket\": \"{{ticket}}\",\n  \"status\": \"{{status}}\",\n  \"rejected\": \"{{rejected}}\",\n  \"scrapped\": \"{{scrapped}}\",\n  \"crm\": \"{{crm}}\",\n  \"terminal\": \"{{terminal}}\",\n  \"park\": \"{{park}}\",\n  \"purchaseAt\": \"{{purchaseAt}}\",\n  \"plateAt\": \"{{plateAt}}\",\n  \"operateAt\": \"{{operateAt}}\",\n  \"retireAt\": \"{{retireAt}}\",\n  \"license\": \"{{license}}\",\n  \"brands\": \"{{brands}}\",\n  \"plate\": \"{{plate}}\",\n  \"vin\": \"{{vin}}\",\n  \"jobNum\": \"{{jobNum}}\",\n  \"num\": \"{{num}}\",\n  \"catl\": \"{{catl}}\",\n  \"batteryPN\": \"{{batteryPN}}\",\n  \"batteryNum\": \"{{batteryNum}}\",\n  \"batteryPropRight\": \"{{batteryPropRight}}\",\n  \"power\": \"{{power}}\",\n  \"bmuHardware\": \"{{bmuHardware}}\",\n  \"bmuSoftware\": \"{{bmuSoftware}}\",\n  \"cscHardware\": \"{{cscHardware}}\",\n  \"cscSoftware\": \"{{cscSoftware}}\",\n  \"rdb\": \"{{rdb}}\",\n  \"remark\": \"{{remark}}\",\n  \"softwarePic\": \"{{softwarePic}}\",\n  \"frontPic\": \"{{frontPic}}\",\n  \"nameplatePic\": \"{{nameplatePic}}\",\n  \"meterPic\": \"{{meterPic}}\",\n  \"batteryPic\": \"{{batteryPic}}\",\n  \"otherPic\": \"{{otherPic}}\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/vehicles/:vehicleId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"vehicles",
+										":vehicleId"
+									],
+									"variable": [
+										{
+											"key": "vehicleId",
+											"value": "{{vehicleId}}"
+										}
+									]
+								}
+							},
+							"status": "The vehicle",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "USER: 无法删除 VEHICLE_A",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba55c26f-69fb-4a0d-8ea1-9f631e196bce",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"  pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/vehicles/:vehicleId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vehicles",
+								":vehicleId"
+							],
+							"variable": [
+								{
+									"key": "vehicleId",
+									"value": "{{VEHICLE_A}}",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response_204",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/vehicles/:vehicleId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"vehicles",
+										":vehicleId"
+									],
+									"variable": [
+										{
+											"key": "vehicleId",
+											"value": "{{vehicleId}}"
+										}
+									]
+								}
+							},
+							"status": "vehicle deleted",
+							"code": 204,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "ADMIN: 可以删除 VEHICLE_A",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "20b5dbe8-a9e3-46fd-aaa8-721637bc539d",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"  pm.response.to.have.status(204);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/vehicles/:vehicleId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vehicles",
+								":vehicleId"
+							],
+							"variable": [
+								{
+									"key": "vehicleId",
+									"value": "{{VEHICLE_A}}",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response_204",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/vehicles/:vehicleId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"vehicles",
+										":vehicleId"
+									],
+									"variable": [
+										{
+											"key": "vehicleId",
+											"value": "{{vehicleId}}"
+										}
+									]
+								}
+							},
+							"status": "vehicle deleted",
+							"code": 204,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "USER: 查看 vehicles alerts 列表",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2ea87b38-3ac9-443a-a7d1-9c509003fb0e",
+								"exec": [
+									"var Ajv = require('ajv');",
+									"var ajv = new Ajv({ logger: console, coerceTypes: true, unknownFormats: [\"int32\"] });",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"const schema = {\"type\":\"object\",\"required\":[],\"properties\":{\"content\":{\"type\":\"array\",\"items\":{\"allOf\":[{\"type\":\"object\",\"properties\":{\"level\":{\"type\":\"integer\",\"format\":\"int32\"},\"code\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"startedAt\":{\"type\":\"string\",\"format\":\"date-time\"},\"count\":{\"type\":\"integer\",\"format\":\"int32\"}}},{\"type\":\"object\",\"required\":[\"id\"],\"properties\":{\"id\":{\"type\":\"string\"},\"updateAt\":{\"type\":\"string\",\"format\":\"date-time\"},\"updateBy\":{\"type\":\"string\"},\"createAt\":{\"type\":\"string\",\"format\":\"date-time\"},\"createBy\":{\"type\":\"string\"}}}]}},\"headers\":{\"type\":\"object\",\"required\":[\"X-Total-Count\"],\"properties\":{\"X-Total-Count\":{\"type\":\"integer\"}}}}};",
+									"const res = {",
+									"  content: pm.response.json(),",
+									"  headers: pm.response.headers.reduce((c, k) => ({...c, [k.key]: k.value }), {})",
+									"}",
+									"pm.test(\"Json body schema test\", function(){",
+									"  pm.expect(ajv.validate(schema, res)).to.be.true;",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/vehicles/:vehicleId/alerts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vehicles",
+								":vehicleId",
+								"alerts"
+							],
+							"variable": [
+								{
+									"key": "vehicleId",
+									"value": "{{VEHICLE_A}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response_200",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/vehicles/:vehicleId/alerts?_limit=&_offset=&_sort=&_select=&level=",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"vehicles",
+										":vehicleId",
+										"alerts"
+									],
+									"query": [
+										{
+											"key": "_limit",
+											"value": ""
+										},
+										{
+											"key": "_offset",
+											"value": ""
+										},
+										{
+											"key": "_sort",
+											"value": ""
+										},
+										{
+											"key": "_select",
+											"value": ""
+										},
+										{
+											"key": "level",
+											"value": ""
+										}
+									],
+									"variable": [
+										{
+											"key": "vehicleId",
+											"value": "{{vehicleId}}"
+										}
+									]
+								}
+							},
+							"status": "A paged array of vehicle alerts",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-Total-Count",
+									"value": "unset"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
