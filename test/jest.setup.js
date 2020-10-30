@@ -1,20 +1,8 @@
-import mongoose from "mongoose";
-
 import { app, config } from "../src";
 
-const { PORT, MONGODB_CONNECTION } = config;
+const { PORT } = config;
 
 export default async () => {
-  /**
-   * setup mongo
-   */
-  await mongoose.connect(MONGODB_CONNECTION, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-  });
-
   /**
    * setup server
    */

@@ -5,11 +5,11 @@ info:
   license:
     name: MIT
 servers:
-  - url: https://api.youyuan.36node.com{basePath}
+  - url: https://api.36node.com{basePath}
     description: The production API server
     variables:
       basePath:
-        default: /core/v0
+        default: /echo
 paths:
   /logs:
     post:

@@ -6,7 +6,6 @@ defaults: &defaults
     TZ: "Asia/Shanghai"
   docker:
     - image: circleci/node:14
-    - image: mongo:4
 
 jobs:
   build:

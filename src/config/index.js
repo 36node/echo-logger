@@ -8,7 +8,6 @@ import dotenv from "dotenv";
  *
  * APP_PORT=9527
  * APP_BASE_PATH=/v1
- * APP_MONGODB_CONNECTION="mongodb://localhost/petstore"
  */
 
 dotenv.config();
@@ -40,11 +39,3 @@ export const LOG_LEVEL = env("LOG_LEVEL", "info");
 
 // 管理员权限 type
 export const ADMIN_ROLE_TYPE = env("ADMIN_ROLE_TYPE", "admin");
-
-/**
- * Mongodb
- */
-export const MONGODB_CONNECTION = env(
-  "MONGODB_CONNECTION",
-  `mongodb://localhost/echo-logger-${NODE_ENV}`
-);
