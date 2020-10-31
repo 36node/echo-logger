@@ -36,6 +36,3 @@ export const NODE_ENV = env("NODE_ENV", "development");
 export const PORT = env("PORT", 9527);
 export const BASE = env("BASE", "/echo/v0");
 export const LOG_LEVEL = env("LOG_LEVEL", "info");
-
-// 管理员权限 type
-export const ADMIN_ROLE_TYPE = env("ADMIN_ROLE_TYPE", "admin");
