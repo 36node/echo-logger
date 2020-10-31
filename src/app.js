@@ -1,5 +1,4 @@
 // @ts-check
-import fs from "fs";
 import path from "path";
 
 import Koa2 from "koa";
@@ -21,7 +20,6 @@ import { errHandler } from "./middlewares";
 
 const app = new Koa2();
 const router = new Router({ prefix: BASE });
-const publicKey = fs.readFileSync(path.join(__dirname, "../ssl/rsa_jwt.pub"));
 
 /**
  * register services
