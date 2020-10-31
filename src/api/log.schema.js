@@ -8,13 +8,11 @@ export const createLogReqSchema = {
       type: "object",
       properties: {
         title: { type: "string", description: "日志标题" },
-        desc: { type: "string", description: "日志详情" },
-        createBy: { type: "string", description: "创建者" },
-        createAt: {
-          tsType: "Date",
-          type: "string",
-          format: "date-time",
-          description: "创建时间",
+        body: { type: "string", description: "日志详情" },
+        tags: {
+          type: "array",
+          description: "标签 逗号分隔",
+          items: { type: "string" },
         },
       },
     },
@@ -30,13 +28,11 @@ export const createLogResSchema = {
       type: "object",
       properties: {
         title: { type: "string", description: "日志标题" },
-        desc: { type: "string", description: "日志详情" },
-        createBy: { type: "string", description: "创建者" },
-        createAt: {
-          tsType: "Date",
-          type: "string",
-          format: "date-time",
-          description: "创建时间",
+        body: { type: "string", description: "日志详情" },
+        tags: {
+          type: "array",
+          description: "标签 逗号分隔",
+          items: { type: "string" },
         },
       },
     },

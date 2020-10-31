@@ -11,15 +11,11 @@ declare namespace API {
       /**
        * 日志详情
        */
-      desc?: string;
+      body?: string;
       /**
-       * 创建者
+       * 标签 逗号分隔
        */
-      createBy?: string;
-      /**
-       * 创建时间
-       */
-      createAt?: Date;
+      tags?: string[];
     };
   }
   export interface CreateLogResponse {
@@ -31,15 +27,11 @@ declare namespace API {
       /**
        * 日志详情
        */
-      desc?: string;
+      body?: string;
       /**
-       * 创建者
+       * 标签 逗号分隔
        */
-      createBy?: string;
-      /**
-       * 创建时间
-       */
-      createAt?: Date;
+      tags?: string[];
     };
   }
   type Context<StateT, CustomT = {}> = RouterContext<StateT, CustomT>;

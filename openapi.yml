@@ -1,7 +1,7 @@
 openapi: "3.0.0"
 info:
   version: v0
-  title: youyuan core Service
+  title: Echo Logger Service
   license:
     name: MIT
 servers:
@@ -9,7 +9,7 @@ servers:
     description: The production API server
     variables:
       basePath:
-        default: /echo
+        default: /echo/v0
 paths:
   /logs:
     post:
@@ -37,9 +37,6 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "500":
           $ref: "#/components/responses/InternalError"
-
-security:
-  - bearerAuth: []
 
 components:
   responses:
@@ -83,16 +80,14 @@ components:
         title:
           type: string
           description: 日志标题
-        desc:
+        body:
           type: string
           description: 日志详情
-        createBy:
-          type: string
-          description: 创建者
-        createAt:
-          type: string
-          format: date-time
-          description: 创建时间
+        tags:
+          type: array
+          description: 标签 逗号分隔
+          items:
+            type: string
 
     Err:
       type: object
@@ -121,9 +116,3 @@ components:
                 type: string
               value:
                 type: string
-
-  securitySchemes:
-    bearerAuth: # arbitrary name for the security scheme
-      type: http
-      scheme: bearer
-      bearerFormat: JWT

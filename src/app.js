@@ -9,7 +9,6 @@ import cors from "@koa/cors";
 import helmet from "koa-helmet";
 import koaLogger from "koa-logger";
 import koaPinoLogger from "koa-pino-logger";
-import jwt from "koa-jwt";
 import Router from "koa-tree-router";
 import health from "@36node/koa-health";
 import openapi from "@36node/koa-openapi";
@@ -40,16 +39,6 @@ if (NODE_ENV !== "production") {
 }
 
 /**
- * path do not need jwt
- */
-function custom(ctx) {
-  return (
-    ctx.method === "GET" &&
-    !["/openapi.yml"].every(item => !ctx.url.includes(item))
-  );
-}
-
-/**
  * application
  */
 app
@@ -63,7 +52,6 @@ app
       file: path.join(__dirname, "../openapi.yml"),
     })
   )
-  .use(jwt({ secret: publicKey, key: "jwt" }).unless({ custom }))
   .use(body())
   .use(compress({ threshold: 2048 }))
   .use(router.routes());
