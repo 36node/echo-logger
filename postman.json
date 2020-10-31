@@ -1,14 +1,14 @@
 {
   "item": [
     {
-      "id": "b6a65ab1-6692-4f09-acca-ebc9d83cfc51",
+      "id": "af6fa463-1875-4f60-92e9-989c18159cd7",
       "name": "log",
       "item": [
         {
-          "id": "25ab9483-bc77-4c65-ab63-5b00f5065334",
+          "id": "5a48abc7-23e2-4500-912f-759f4f65d17d",
           "response": [
             {
-              "id": "a005ad16-6ad1-4e7d-a090-aee1a61497a2",
+              "id": "20dee5a3-5f7a-4227-902e-29da34e3e0db",
               "header": [
                 {
                   "key": "Content-type",
@@ -39,7 +39,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"title\": \"{{title}}\",\n  \"body\": \"{{body}}\",\n  \"tags\": \"{{tags}}\"\n}"
+                  "raw": "{\n  \"event\": \"{{event}}\",\n  \"title\": \"{{title}}\",\n  \"body\": \"{{body}}\",\n  \"tags\": \"{{tags}}\"\n}"
                 }
               },
               "code": 201,
@@ -50,7 +50,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "7ec98549-6d25-4dba-a177-a97b8d62a4d8",
+                "id": "7566c1ae-edfe-4e05-ad4e-9a71b79fc2b8",
                 "type": "text/javascript",
                 "exec": [
                   "var Ajv = require('ajv');",
@@ -60,7 +60,7 @@
                   "  pm.response.to.have.status(201);",
                   "});",
                   "",
-                  "const schema = {\"type\":\"object\",\"required\":[],\"properties\":{\"content\":{\"type\":\"object\",\"properties\":{\"title\":{\"type\":\"string\"},\"body\":{\"type\":\"string\"},\"tags\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}}};",
+                  "const schema = {\"type\":\"object\",\"required\":[],\"properties\":{\"content\":{\"type\":\"object\",\"properties\":{\"event\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"body\":{\"type\":\"string\"},\"tags\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}}};",
                   "const res = {",
                   "  content: pm.response.json(),",
                   "  headers: pm.response.headers.reduce((c, k) => ({...c, [k.key]: k.value }), {})",
@@ -95,7 +95,7 @@
             "method": "POST",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"title\": \"{{title}}\",\n  \"body\": \"{{body}}\",\n  \"tags\": \"{{tags}}\"\n}"
+              "raw": "{\n  \"event\": \"{{event}}\",\n  \"title\": \"{{title}}\",\n  \"body\": \"{{body}}\",\n  \"tags\": \"{{tags}}\"\n}"
             }
           },
           "name": "Create a log",
@@ -108,6 +108,9 @@
   "event": [],
   "variable": [
     {
+      "key": "event"
+    },
+    {
       "key": "title"
     },
     {
@@ -118,7 +121,7 @@
     }
   ],
   "info": {
-    "_postman_id": "a76075b3-aa6c-499e-ad4c-662e8eaec008",
+    "_postman_id": "ab2fe80a-cbb0-4dfd-9974-a0adebf4bc8a",
     "name": "Echo Logger Service",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   }

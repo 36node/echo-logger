@@ -77,6 +77,9 @@ components:
     Log:
       type: object
       properties:
+        event:
+          type: string
+          description: 事件类别
         title:
           type: string
           description: 日志标题

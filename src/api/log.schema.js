@@ -7,6 +7,7 @@ export const createLogReqSchema = {
       additionalProperties: false,
       type: "object",
       properties: {
+        event: { type: "string", description: "事件类别" },
         title: { type: "string", description: "日志标题" },
         body: { type: "string", description: "日志详情" },
         tags: {
@@ -27,6 +28,7 @@ export const createLogResSchema = {
       additionalProperties: false,
       type: "object",
       properties: {
+        event: { type: "string", description: "事件类别" },
         title: { type: "string", description: "日志标题" },
         body: { type: "string", description: "日志详情" },
         tags: {

@@ -5,6 +5,10 @@ declare namespace API {
   export interface CreateLogRequest {
     body: {
       /**
+       * 事件类别
+       */
+      event?: string;
+      /**
        * 日志标题
        */
       title?: string;
@@ -20,6 +24,10 @@ declare namespace API {
   }
   export interface CreateLogResponse {
     content?: {
+      /**
+       * 事件类别
+       */
+      event?: string;
       /**
        * 日志标题
        */

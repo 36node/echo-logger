@@ -20,7 +20,7 @@
               "  pm.response.to.have.status(201);",
               "});",
               "",
-              "const schema = {\"type\":\"object\",\"required\":[],\"properties\":{\"content\":{\"type\":\"object\",\"properties\":{\"title\":{\"type\":\"string\"},\"body\":{\"type\":\"string\"},\"tags\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}}};",
+              "const schema = {\"type\":\"object\",\"required\":[],\"properties\":{\"content\":{\"type\":\"object\",\"properties\":{\"event\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"body\":{\"type\":\"string\"},\"tags\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}}};",
               "",
               "const res = {",
               "  content: pm.response.json(),",
@@ -47,7 +47,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"title\": \"标题\",\n    \"body\": \"内容\",\n    \"tags\": \"game\"\n}",
+          "raw": "{\n    \"event\": \"echo.logger.created\",\n    \"title\": \"标题\",\n    \"body\": \"内容\",\n    \"tags\": \"game\"\n}",
           "options": {
             "raw": {
               "language": "json"
