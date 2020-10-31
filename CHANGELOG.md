@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/36node/echo-logger/compare/v0.0.4...v0.0.5) (2020-10-31)
+
+
+### Bug Fixes
+
+* remove jwt ([426c227](https://github.com/36node/echo-logger/commit/426c227))
+
+
+
 ### [0.0.4](https://github.com/36node/echo-logger/compare/v0.0.2...v0.0.4) (2020-10-30)
 
 
