@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/36node/echo-logger/compare/v0.0.5...v0.0.6) (2020-10-31)
+
+
+### Bug Fixes
+
+* remove redundant import ([26d9801](https://github.com/36node/echo-logger/commit/26d9801))
+
+
+
 ### [0.0.5](https://github.com/36node/echo-logger/compare/v0.0.4...v0.0.5) (2020-10-31)
 
 
