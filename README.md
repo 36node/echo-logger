@@ -1,8 +1,14 @@
-## @36node/echo-logger
+# @36node/echo-logger
 
 用于给消息队列提供测试数据
 
-#### 使用及调试方法
+## Quick Start
+
+1. 安装 `yarn`
+2. 启动 `yarn start`
+3. 通过如下脚本向 server 发送 5 条日志 `bin/post.sh 5`
+
+## 开发脚本
 
 1. 安装：`yarn`
 2. 启动： `yarn start`
@@ -10,7 +16,7 @@
 4. 单元测试： `yarn test`
 5. 集成测试： `yarn test:int`
 
-#### 测试说明
+## 测试说明
 
 _测试文件通过 fastman 库 对接 Postman_
 
