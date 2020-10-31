@@ -11,6 +11,7 @@ post() {
   curl --location --request POST 'http://localhost:9527/echo/v0/logs' \
   --header 'Content-Type: application/json' \
   --data-raw '{
+      "event": "echo.logger.created",
       "title": "标题",
       "body": "'${BODY}'",
       "tags": "hello"
